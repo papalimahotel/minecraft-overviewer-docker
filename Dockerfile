@@ -16,9 +16,6 @@ WORKDIR /usr/src/app/overviewer
 RUN git clone https://github.com/overviewer/Minecraft-Overviewer.git .
 RUN python3 ./setup.py build
 
-# Start the web server
-RUN service nginx start
-
 # Create world data folder & expose as volume to host
 RUN mkdir -p /data/world
 VOLUME /data/world
