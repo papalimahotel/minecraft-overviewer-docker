@@ -49,6 +49,24 @@ renders['night-right'] = {
 	'markers': [dict(name='Players', filterFunction=playerIcons, checked=True)],
 }
 
+renders['cave-left'] = {
+	'world': world_name,
+	'title': 'Cave(left)',
+	'rendermode': cave,
+	'dimension': 'overworld',
+	'northdirection': 'upper-left',
+	'markers': [dict(name='Players', filterFunction=playerIcons, checked=True)],
+}
+
+renders['cave-right'] = {
+	'world': world_name,
+	'title': 'Cave(right)',
+	'rendermode': cave,
+	'dimension': 'overworld',
+	'northdirection': 'upper-right',
+	'markers': [dict(name='Players', filterFunction=playerIcons, checked=True)],
+}
+
 renders['nether-left'] = {
 	'world': world_name,
 	'title': 'Nether(left)',
@@ -86,4 +104,4 @@ renders['end-right'] = {
 }
 
 
-outputdir = '/usr/share/nginx/html'
+outputdir = '/var/www/html'
