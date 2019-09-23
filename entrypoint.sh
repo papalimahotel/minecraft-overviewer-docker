@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# Start the nginx service
+service nginx start
+
+# Set the envionment variables to defaults if not present
 if [ -z $OVERVIEWER_CYCLE ]; then
 	export OVERVIEWER_CYCLE=3600
 fi
@@ -15,7 +19,7 @@ fi
 
 wget $OVERVIEWER_TEXTURE_URL -P /texture
 
-
+# Repeatedly render the maps at the specified interval
 while true; do
 	/usr/src/app/overviewer/overviewer.py --config="/config.py" --genpoi
 	/usr/src/app/overviewer/overviewer.py --config="/config.py"
