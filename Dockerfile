@@ -33,4 +33,4 @@ ADD config.py /
 RUN chmod +x /entrypoint.sh
 
 # Run looping script
-ENTRYPOINT /entrypoint.sh
+ENTRYPOINT ["/entrypoint.sh"]
