@@ -2,10 +2,6 @@ FROM ubuntu:18.04
 
 MAINTAINER papalimahotel
 
-# Add custom files
-ADD entrypoint.sh /
-ADD config.py /
-
 # Update apt repository and install required packages
 RUN apt-get update
 RUN apt-get install -y git wget python3 python3-pip python3-pil nginx
@@ -29,6 +25,12 @@ VOLUME /data/world
 
 # Open port(s) to the host for network access
 EXPOSE 80/tcp
+
+# Add custom files
+ADD entrypoint.sh /
+ADD config.py /
+
+RUN chmod +x /entrypoint.sh
 
 # Run looping script
 ENTRYPOINT /entrypoint.sh
