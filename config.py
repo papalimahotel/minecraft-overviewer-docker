@@ -1,13 +1,13 @@
 #!/usr/bin/env python
 import os
+from .observer import JSObserver
 
 def playerIcons(poi):
 	if poi['id'] == 'Player':
 		poi['icon'] = "https://minotar.net/helm/%s/32" % poi['EntityId']
 		return "Last known location for %s" % poi['EntityId']
 
-# Only signs with "-- RENDER --" in them, and no others. Otherwise, people
-# can't have secret bases and the render is too busy anyways.
+# Only signs with "-=POI=-" in them, and no others.
 def signFilter(poi):
 	if poi['id'] in ['Sign', 'minecraft:sign']:
 		if '-=POI=-' in poi.values():
