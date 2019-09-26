@@ -1,13 +1,13 @@
 #!/usr/bin/env python
 import os
+from .observer import JSObserver
 
 def playerIcons(poi):
 	if poi['id'] == 'Player':
 		poi['icon'] = "https://minotar.net/helm/%s/32" % poi['EntityId']
 		return "Last known location for %s" % poi['EntityId']
 
-# Only signs with "-- RENDER --" in them, and no others. Otherwise, people
-# can't have secret bases and the render is too busy anyways.
+# Only signs with "-=POI=-" in them, and no others.
 def signFilter(poi):
 	if poi['id'] in ['Sign', 'minecraft:sign']:
 		if '-=POI=-' in poi.values():
@@ -19,6 +19,7 @@ worlds[world_name] = '/mc/world'
 
 texturepath = '/ov/texture'
 outputdir = '/var/www/html'
+observer = JSObserver(outputdir, 10)
 
 markers = [
 	dict(name='Players', filterFunction=playerIcons, checked=True),
@@ -76,7 +77,7 @@ renders['overlay_biome'] = {
 renders['overlay_mobs'] = {
 	'world': world_name,
 	'title': 'Mob Spawnable Areas Overlay',
-	'rendermode': [Clearbase(), SpawnOverlay()],
+	'rendermode': [ClearBase(), SpawnOverlay()],
 	'dimension': 'overworld',
 	'overlay': ['day']
 }
