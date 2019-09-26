@@ -19,6 +19,7 @@ worlds[world_name] = '/mc/world'
 
 texturepath = '/ov/texture'
 outputdir = '/var/www/html'
+observer = JSObserver(outputdir, 10)
 
 markers = [
 	dict(name='Players', filterFunction=playerIcons, checked=True),
@@ -76,7 +77,7 @@ renders['overlay_biome'] = {
 renders['overlay_mobs'] = {
 	'world': world_name,
 	'title': 'Mob Spawnable Areas Overlay',
-	'rendermode': [Clearbase(), SpawnOverlay()],
+	'rendermode': [ClearBase(), SpawnOverlay()],
 	'dimension': 'overworld',
 	'overlay': ['day']
 }
