@@ -1,10 +1,15 @@
 #CHANGELOG
 
+### Release v1.1.1 (September 26, 2019)
+- Minor corrections to the overviewer config
+- Changed the observer for overviewer to JSObserver
+- Moved the html file to the _/ov_ volume
+
 ### Release v1.1.0 (September 25, 2019)
 - Moved the default texture download into the build
 - consolidated configuration items into _/ov_ volume to allow host edits of overviewer config.py
 - change entrypoint.sh to start
-- updated documentation 
+- updated documentation
 
 ### Release v1.0.2 (September 23, 2019)
 - Moved nginx startup from the Dockerfile (build) to the entrypoint script (run)
