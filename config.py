@@ -6,102 +6,85 @@ def playerIcons(poi):
 		poi['icon'] = "https://minotar.net/helm/%s/32" % poi['EntityId']
 		return "Last known location for %s" % poi['EntityId']
 
-world_path = '/data/world'
-texturepath = '/texture/client.jar'
+# Only signs with "-- RENDER --" in them, and no others. Otherwise, people
+# can't have secret bases and the render is too busy anyways.
+def signFilter(poi):
+	if poi['id'] in ['Sign', 'minecraft:sign']:
+		if '-=POI=-' in poi.values():
+			return "\n".join([poi['Text1'], poi['Text2'], poi['Text3'], poi['Text4']])
+
 
 world_name = os.environ.get('OVERVIEWER_WORLD_NAME')
+worlds[world_name] = '/mc/world'
 
-worlds[world_name] = world_path
-
-renders['day-left'] = {
-	'world': world_name,
-	'title': 'Day(left)',
-	'rendermode': smooth_lighting,
-	'dimension': 'overworld',
-	'northdirection': 'upper-left',
-	'markers': [dict(name='Players', filterFunction=playerIcons, checked=True)],
-}
-
-renders['day-right'] = {
-	'world': world_name,
-	'title': 'Day(right)',
-	'rendermode': smooth_lighting,
-	'dimension': 'overworld',
-	'northdirection': 'upper-right',
-	'markers': [dict(name='Players', filterFunction=playerIcons, checked=True)],
-}
-
-renders['night-left'] = {
-	'world': world_name,
-	'title': 'Night(left)',
-	'rendermode': smooth_night,
-	'dimension': 'overworld',
-	'northdirection': 'upper-left',
-	'markers': [dict(name='Players', filterFunction=playerIcons, checked=True)],
-}
-
-renders['night-right'] = {
-	'world': world_name,
-	'title': 'Night(right)',
-	'rendermode': smooth_night,
-	'dimension': 'overworld',
-	'northdirection': 'upper-right',
-	'markers': [dict(name='Players', filterFunction=playerIcons, checked=True)],
-}
-
-renders['cave-left'] = {
-	'world': world_name,
-	'title': 'Cave(left)',
-	'rendermode': cave,
-	'dimension': 'overworld',
-	'northdirection': 'upper-left',
-	'markers': [dict(name='Players', filterFunction=playerIcons, checked=True)],
-}
-
-renders['cave-right'] = {
-	'world': world_name,
-	'title': 'Cave(right)',
-	'rendermode': cave,
-	'dimension': 'overworld',
-	'northdirection': 'upper-right',
-	'markers': [dict(name='Players', filterFunction=playerIcons, checked=True)],
-}
-
-renders['nether-left'] = {
-	'world': world_name,
-	'title': 'Nether(left)',
-	'rendermode': nether_smooth_lighting,
-	'dimension': 'nether',
-	'northdirection': 'upper-left',
-	'markers': [dict(name='Players', filterFunction=playerIcons, checked=True)],
-}
-
-renders['nether-right'] = {
-	'world': world_name,
-	'title': 'Nether(right)',
-	'rendermode': nether_smooth_lighting,
-	'dimension': 'nether',
-	'northdirection': 'upper-right',
-	'markers': [dict(name='Players', filterFunction=playerIcons, checked=True)],
-}
-
-renders['end-left'] = {
-	'world': world_name,
-	'title': 'The End(left)',
-	'rendermode': smooth_lighting,
-	'dimension': 'end',
-	'northdirection': 'upper-left',
-	'markers': [dict(name='Players', filterFunction=playerIcons, checked=True)],
-}
-
-renders['end-right'] = {
-	'world': world_name,
-	'title': 'The End(right)',
-	'rendermode': smooth_lighting,
-	'dimension': 'end',
-	'northdirection': 'upper-right',
-	'markers': [dict(name='Players', filterFunction=playerIcons, checked=True)],
-}
-
-
+texturepath = '/ov/texture'
 outputdir = '/var/www/html'
+
+markers = [
+	dict(name='Players', filterFunction=playerIcons, checked=True),
+	dict(name='Signs', filterFunction=signFilter, checked=True)
+]
+
+renders['day'] = {
+	'world': world_name,
+	'title': 'Day',
+	'rendermode': smooth_lighting,
+	'dimension': 'overworld',
+	'markers': markers
+}
+
+renders['night'] = {
+	'world': world_name,
+	'title': 'Night',
+	'rendermode': smooth_night,
+	'dimension': 'overworld',
+	'markers': markers
+}
+
+renders['cave'] = {
+	'world': world_name,
+	'title': 'Cave',
+	'rendermode': cave,
+	'dimension': 'overworld',
+	'markers': markers
+}
+
+renders['nether'] = {
+	'world': world_name,
+	'title': 'Nether',
+	'rendermode': nether_smooth_lighting,
+	'dimension': 'nether',
+	'markers': markers
+}
+
+renders['end'] = {
+	'world': world_name,
+	'title': 'The End',
+	'rendermode': [Base(), EdgeLines(), SmoothLighting(strength=0.5)],
+	'dimension': 'end',
+	'markers': markers
+}
+
+renders['overlay_biome'] = {
+	'world': world_name,
+	'title': 'Biome Colouring Overlay',
+	'rendermode': [ClearBase(), BiomeOverlay()],
+	'dimension': 'overworld',
+	'overlay': ['day']
+}
+
+renders['overlay_mobs'] = {
+	'world': world_name,
+	'title': 'Mob Spawnable Areas Overlay',
+	'rendermode': [Clearbase(), SpawnOverlay()],
+	'dimension': 'overworld',
+	'overlay': ['day']
+}
+
+renders['overlay_slime'] = {
+	'world': world_name,
+	'title': 'Slime Chunk Overlay',
+	'rendermode': [ClearBase(), SlimeOverlay()],
+	'dimension': 'overworld',
+	'overlay': ['day']
+}
