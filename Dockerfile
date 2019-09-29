@@ -6,10 +6,11 @@ MAINTAINER papalimahotel
 ARG ver=1.14.4
 ARG url=https://launcher.mojang.com/v1/objects/8c325a0c5bd674dd747d6ebaa4c791fd363ad8a9/client.jar
 
+ENV DEBIAN_FRONTEND=noninteractive
 # Update apt repository and install required packages
 RUN \
 	apt-get update && \
-	apt-get install -y git wget python3 python3-pip python3-pil nginx
+	apt-get install -yq git wget python3 python3-pip python3-pil nginx sudo tzdata
 
 # Add python packages
 RUN \
