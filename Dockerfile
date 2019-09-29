@@ -31,7 +31,7 @@ RUN \
 	mkdir -p ~/.minecraft/versions/$ver && \
 	mv /var/www/html /ov && \
 	ln -s /ov/html /var/www/html && \
-	groupadd -gid 1000 mcov && \
+	groupadd --gid 1000 mcov && \
 	useradd --uid 1000 --gid 1000 --no-create-home mcov && \
 	sed -i 's/www-data/mcov/g' /etc/nginx/nginx.conf
 
