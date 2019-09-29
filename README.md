@@ -1,5 +1,6 @@
 [![Docker Pulls](https://img.shields.io/docker/pulls/papalimahotel/minecraft-overviewer.svg)](https://hub.docker.com/r/papalimahotel/minecraft-overviewer/)
 [![Docker Stars](https://img.shields.io/docker/stars/papalimahotel/minecraft-overviewer.svg?maxAge=2592000)](https://hub.docker.com/r/papalimahotel/minecraft-overviewer/)
+[![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/papalimahotel/minecraft-overviewer-docker?color=%23bc83d4&label=Release)](https://github.com/papalimahotel/minecraft-overviewer-docker/)
 [![GitHub Commit](https://img.shields.io/github/last-commit/papalimahotel/minecraft-overviewer-docker.svg)](https://github.com/papalimahotel/minecraft-overviewer-docker/)
 [![GitHub Issues](https://img.shields.io/github/issues-raw/papalimahotel/minecraft-overviewer-docker.svg)](https://github.com/papalimahotel/minecraft-overviewer-docker/issues)
 
