@@ -28,11 +28,12 @@ RUN \
 	mkdir -p /ov/config && \
 	mkdir -p /ov/texture && \
 	mkdir -p /mc/world && \
-	mkdir -p ~/.minecraft/versions/$ver && \
 	mv /var/www/html /ov && \
 	ln -s /ov/html /var/www/html && \
 	groupadd --gid 1000 mcov && \
-	useradd --uid 1000 --gid 1000 --no-create-home mcov && \
+	useradd -m -d /home/mcov --uid 1000 --gid 1000 mcov && \
+	mkdir -p /home/mcov/.minecraft/versions/$ver && \
+	chown -R mcov.mcov /ov/html && \
 	sed -i 's/www-data/mcov/g' /etc/nginx/nginx.conf
 
 # Add custom files
@@ -42,7 +43,7 @@ ADD start /
 # Set the start script to be executable and download the default textures
 RUN \
 	chmod +x /start && \
-	wget $url -O ~/.minecraft/versions/$ver/$ver.jar
+	wget $url -O /home/mcov/.minecraft/versions/$ver/$ver.jar
 
 # Expose Overview folder and world folder as volumes to host
 VOLUME /ov
