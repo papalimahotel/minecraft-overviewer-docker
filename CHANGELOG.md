@@ -1,5 +1,8 @@
 #CHANGELOG
 
+### Release v1.1.3 (September 29, 2019)
+- Corrected typo in groupadd command
+
 ### Release v1.1.2 (September 29, 2019)
 - Allow for timezone setting
 - Create mcov (1000) user and group
