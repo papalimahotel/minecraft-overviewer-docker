@@ -3,6 +3,12 @@
 # Start the nginx service
 service nginx start
 
+# Set the timezone
+if [ -n $OVERVIEWER_TZ ]; then
+	ln -snf /usr/share/zoneinfo/$OVERVIEWER_TZ /etc/localtime
+	echo $OVERVIEWER_TZ > /etc/timezone
+fi
+
 # Set the envionment variables to defaults if not present
 if [ -z $OVERVIEWER_CYCLE ]; then
 	export OVERVIEWER_CYCLE=3600
@@ -14,7 +20,7 @@ fi
 
 # Repeatedly render the maps at the specified interval
 while true; do
-	/usr/src/app/overviewer/overviewer.py --config="/ov/config/config.py" --genpoi
-	/usr/src/app/overviewer/overviewer.py --config="/ov/config/config.py"
+	sudo -u mcov /usr/src/app/overviewer/overviewer.py --config="/ov/config/config.py" --genpoi
+	sudo -u mcov /usr/src/app/overviewer/overviewer.py --config="/ov/config/config.py"
 	sleep $OVERVIEWER_CYCLE
 done
