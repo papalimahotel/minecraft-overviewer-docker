@@ -6,10 +6,11 @@ MAINTAINER papalimahotel
 ARG ver=1.14.4
 ARG url=https://launcher.mojang.com/v1/objects/8c325a0c5bd674dd747d6ebaa4c791fd363ad8a9/client.jar
 
+ENV DEBIAN_FRONTEND=noninteractive
 # Update apt repository and install required packages
 RUN \
 	apt-get update && \
-	apt-get install -y git wget python3 python3-pip python3-pil nginx
+	apt-get install -yq git wget python3 python3-pip python3-pil nginx sudo tzdata
 
 # Add python packages
 RUN \
@@ -29,7 +30,10 @@ RUN \
 	mkdir -p /mc/world && \
 	mkdir -p ~/.minecraft/versions/$ver && \
 	mv /var/www/html /ov && \
-	ln -s /ov/html /var/www/html
+	ln -s /ov/html /var/www/html && \
+	groupadd -gid 1000 mcov && \
+	useradd --uid 1000 --gid 1000 --no-create-home mcov && \
+	sed -i 's/www-data/mcov/g' /etc/nginx/nginx.conf
 
 # Add custom files
 ADD config.py /ov/config/
