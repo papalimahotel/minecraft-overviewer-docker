@@ -1,5 +1,9 @@
 #CHANGELOG
 
+### Release v1.1.4 (September 29, 2019)
+- Ensure mcov home folder is created
+- Change location of default texture pack
+
 ### Release v1.1.3 (September 29, 2019)
 - Corrected typo in groupadd command
 
