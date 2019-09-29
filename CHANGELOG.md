@@ -1,5 +1,11 @@
 #CHANGELOG
 
+### Release v1.1.2 (September 29, 2019)
+- Allow for timezone setting
+- Create mcov (1000) user and group
+- Run nginx as mcov user
+- Run overviewer render as mcov user
+
 ### Release v1.1.1 (September 26, 2019)
 - Minor corrections to the overviewer config
 - Changed the observer for overviewer to JSObserver
