@@ -1,5 +1,9 @@
 #CHANGELOG
 
+### Release v1.1.5 (September 29, 2019)
+- Change ownership of default texture pack
+- Switch to runuser from sudo so that user home folder is included in environment
+
 ### Release v1.1.4 (September 29, 2019)
 - Ensure mcov home folder is created
 - Change location of default texture pack
