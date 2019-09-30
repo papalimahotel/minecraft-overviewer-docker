@@ -20,7 +20,7 @@ fi
 
 # Repeatedly render the maps at the specified interval
 while true; do
-	sudo -u mcov /usr/src/app/overviewer/overviewer.py --config="/ov/config/config.py" --genpoi
-	sudo -u mcov /usr/src/app/overviewer/overviewer.py --config="/ov/config/config.py"
+	runuser -l mcov -c '/usr/src/app/overviewer/overviewer.py --config="/ov/config/config.py" --genpoi'
+	runuser -l mcov -c '/usr/src/app/overviewer/overviewer.py --config="/ov/config/config.py"'
 	sleep $OVERVIEWER_CYCLE
 done
