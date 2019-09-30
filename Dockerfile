@@ -10,7 +10,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 # Update apt repository and install required packages
 RUN \
 	apt-get update && \
-	apt-get install -yq git wget python3 python3-pip python3-pil nginx sudo tzdata
+	apt-get install -yq git wget python3 python3-pip python3-pil nginx tzdata
 
 # Add python packages
 RUN \
@@ -43,7 +43,8 @@ ADD start /
 # Set the start script to be executable and download the default textures
 RUN \
 	chmod +x /start && \
-	wget $url -O /home/mcov/.minecraft/versions/$ver/$ver.jar
+	wget $url -O /home/mcov/.minecraft/versions/$ver/$ver.jar && \
+	chown -R mcov.mcov /home/mcov/.minecraft
 
 # Expose Overview folder and world folder as volumes to host
 VOLUME /ov
