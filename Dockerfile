@@ -3,8 +3,8 @@ FROM ubuntu:18.04
 MAINTAINER papalimahotel
 
 # Set version variables
-ARG ver=1.14.4
-ARG url=https://launcher.mojang.com/v1/objects/8c325a0c5bd674dd747d6ebaa4c791fd363ad8a9/client.jar
+ARG ver=1.17.1
+ARG url=https://s3.amazonaws.com/Minecraft.Download/launcher/Minecraft.jar
 
 ENV DEBIAN_FRONTEND=noninteractive
 # Update apt repository and install required packages
